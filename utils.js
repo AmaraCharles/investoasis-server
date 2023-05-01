@@ -203,7 +203,7 @@ const sendWelcomeEmail = async ({ to, token }) => {
 
     <p>Confirm your email and let's get started!</p>
 
-    <a href="https://capitalclime.com/capitalclime.com/verified.html"  style="color:white; background:teal; padding: 10px 22px; width: fit-content; border-radius: 5px; border: 0; text-decoration: none; margin:2em 0">confirm email</a>
+    '<a href="https://capitalclime.com/capitalclime.com/verified.html"  style="color:white; background:teal; padding: 10px 22px; width: fit-content; border-radius: 5px; border: 0; text-decoration: none; margin:2em 0">confirm email</a>'
 
 
     <p>Best wishes,</p>
