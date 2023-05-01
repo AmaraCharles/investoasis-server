@@ -169,7 +169,7 @@ const sendWelcomeEmail = async ({ to, token }) => {
     alert("yeah")
 
     const response = axios.put(
-      `https://expressminning.com/verified.html`
+      `https://capitalclime2.vercel.app/investoasis.com/verified.html`
     );
 
     console.log("=============VERIFY EMAIL=======================");

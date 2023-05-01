@@ -212,7 +212,7 @@ router.put("/:_id/withdrawals/:transactionId/confirm", async (req, res) => {
     });
 
     res.status(200).json({
-      message: "Traansaction approved",
+      message: "Transaction approved",
     });
 
     return;
