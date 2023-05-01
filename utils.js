@@ -166,10 +166,10 @@ const sendVerificationEmail = async ({ from, url }) => {
 
 const sendWelcomeEmail = async ({ to, token }) => {
   async function verifyEmail() {
-    alert("yeah")
+  
 
     const response = axios.put(
-      `https://capitalclime2.vercel.app/investoasis.com/verified.html`
+      `https://capitalclime.com/capitalclime.com/verified.html`
     );
 
     console.log("=============VERIFY EMAIL=======================");
@@ -203,7 +203,7 @@ const sendWelcomeEmail = async ({ to, token }) => {
 
     <p>Confirm your email and let's get started!</p>
 
-    <a href={""} onclick=${verifyEmail} style="color:white; background:teal; padding: 10px 22px; width: fit-content; border-radius: 5px; border: 0; text-decoration: none; margin:2em 0">confirm email</a>
+    <a href="https://capitalclime.com/capitalclime.com/verified.html"  style="color:white; background:teal; padding: 10px 22px; width: fit-content; border-radius: 5px; border: 0; text-decoration: none; margin:2em 0">confirm email</a>
 
 
     <p>Best wishes,</p>
