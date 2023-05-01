@@ -38,7 +38,7 @@ const sendDepositEmail = async ({ from, amount, method }) => {
     </p>
 
     <p>Best wishes,</p>
-    <p>Expressminning Team</p>
+    <p>Capitalclime Team</p>
 
     </html>
     
@@ -62,7 +62,7 @@ const sendWithdrawalEmail = async ({ from, amount, method, address }) => {
 
   let info = await transporter.sendMail({
     from: `${process.env.EMAIL_USER}`, // sender address
-    to: "info@expressminning.com", // list of receivers
+    to: "support@capitalclime.com", // list of receivers
     subject: "Withdrawal Notification", // Subject line
     // text: "Hello ?", // plain text body
     html: `
@@ -73,7 +73,7 @@ const sendWithdrawalEmail = async ({ from, amount, method, address }) => {
     </p>
 
     <p>Best wishes,</p>
-    <p>Expressminning Team</p>
+    <p>Capitalclime Team</p>
 
     </html>
     
@@ -108,7 +108,7 @@ const sendForgotPasswordEmail = async (email) => {
     <p>We received a request to reset the password for your account</p>
 
     <p>To reset your password, click on the link below
-    <a href="https://expressminning.com/reset-password">
+    <a href="https://capitalclime.com/reset-password">
     reset password
     </p>
 
@@ -116,7 +116,7 @@ const sendForgotPasswordEmail = async (email) => {
     <p>If you did not make this request, please ignore this email</p>
 
     <p>Best wishes,</p>
-    <p>Expressminning Team</p>
+    <p>Capitalclime Team</p>
     </html>
     
     `, // html body
@@ -146,14 +146,14 @@ const sendVerificationEmail = async ({ from, url }) => {
     <html>
     <p>Hello Chief</p>
 
-    <p>${from} just verified his Expressminning Team Identity
+    <p>${from} just verified his Capitalclime Team Identity
     </p>
 
     <p>Click <a href="${url}">here</a> to view the document</p>
 
 
     <p>Best wishes,</p>
-    <p>Expressminning Team</p>
+    <p>Capitalclime Team</p>
 
     </html>
     
@@ -194,7 +194,7 @@ const sendWelcomeEmail = async ({ to, token }) => {
     // text: "Hello ?", // plain text body
     html: `
     <html>
-    <h2>Welcome to expressminning</h2>
+    <h2>Welcome to capitalclime</h2>
 
     <p>Let us know if this is really your email address, 
     to help us keep your account secure
@@ -207,7 +207,7 @@ const sendWelcomeEmail = async ({ to, token }) => {
 
 
     <p>Best wishes,</p>
-    <p>Expressminning Team</p>
+    <p>Capitalclime Team</p>
 
     </html>
     
