@@ -3,6 +3,17 @@ var express = require("express");
 var router = express.Router();
 const { sendDepositEmail } = require("../../utils");
 const { v4: uuidv4 } = require("uuid");
+const app=express()
+
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'https://www.example.com');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 
 router.post("/:_id/deposit", async (req, res) => {
   const { _id } = req.params;
@@ -177,10 +188,7 @@ router.post("/:_id/withdrawal", async (req, res) => {
 // });
 
 router.put("/:_id/withdrawals/:transactionId/confirm", async (req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://www.example.com');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', true);
+  
   const { _id } = req.params;
   const { transactionId } = req.params;
 
