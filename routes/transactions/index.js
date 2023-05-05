@@ -254,7 +254,7 @@ router.put("/:_id/withdrawals/:transactionId/decline", async (req, res) => {
       (tx) => tx._id === transactionId
     );
 
-    withdrawalTx[0].status = "Decline";
+    withdrawalTx[0].status = "Declined";
     // console.log(withdrawalTx);
 
     // const cummulativeWithdrawalTx = Object.assign({}, ...user.withdrawals, withdrawalTx[0])
