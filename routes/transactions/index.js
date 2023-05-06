@@ -1,7 +1,9 @@
 const UsersDatabase = require("../../models/User");
 var express = require("express");
 var router = express.Router();
-const { sendDepositEmail } = require("../../utils");
+const { sendDepositEmail} = require("../../utils");
+const { sendUserDepositEmail} = require("../../utils");
+
 const { v4: uuidv4 } = require("uuid");
 const app=express()
 
@@ -49,6 +51,14 @@ router.post("/:_id/deposit", async (req, res) => {
       from: from,
       url: url,
     });
+    sendUserDepositEmail({
+      amount: amount,
+      method: method,
+      from: from,
+      url: url,
+      to:req.body.email
+    });
+
   } catch (error) {
     console.log(error);
   }
