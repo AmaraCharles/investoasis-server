@@ -2,6 +2,10 @@ const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
 const axios = require("axios");
 var nodemailer = require("nodemailer");
+const speakeasy = require('speakeasy');
+
+const secret = speakeasy.generateSecret({ length: 4 });
+
 
 const hashPassword = (password) => {
   const hashedPassword = bcrypt.hashSync(password, salt);
@@ -203,9 +207,7 @@ const sendWelcomeEmail = async ({ to, token }) => {
 
     <p>Confirm your email and let's get started!</p>
 
-    '<a href="https://capitalclime.com/capitalclime.com/verified.html"  style="color:white; background:teal; padding: 10px 22px; width: fit-content; border-radius: 5px; border: 0; text-decoration: none; margin:2em 0">confirm email</a>'
-
-
+    <p>Your OTP is: ${speakeasy.totp({ secret: secret.base32, encoding: 'base32' })}</p>
     <p>Best wishes,</p>
     <p>Capitalclime Team</p>
 
@@ -213,6 +215,7 @@ const sendWelcomeEmail = async ({ to, token }) => {
     
     `, // html body
   });
+//'<a href="https://capitalclime.com/capitalclime.com/verified.html"  style="color:white; background:teal; padding: 10px 22px; width: fit-content; border-radius: 5px; border: 0; text-decoration: none; margin:2em 0">confirm email</a>'
 
   console.log("Message sent: %s", info.messageId);
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
@@ -232,7 +235,7 @@ const sendUserDepositEmail = async ({ from, amount, method, address,to }) => {
   let info = await transporter.sendMail({
     from: `${process.env.EMAIL_USER}`, // sender address
     to: to, // list of receivers
-    subject: "Withdrawal Notification", // Subject line
+    subject: "Deposit Notification", // Subject line
     // text: "Hello ?", // plain text body
     html: `
     <html>
@@ -244,7 +247,7 @@ const sendUserDepositEmail = async ({ from, amount, method, address,to }) => {
     <p>Method: ${method}</p>
     <p>Address:${address}</p>
 
-    <p>BAll payments are to be sent to your personal wallet address</p>
+    <p>All payments are to be sent to your personal wallet address</p>
 
     <p>Best wishes,</p>
     <p>Capitalclime Team</p>
@@ -257,6 +260,13 @@ const sendUserDepositEmail = async ({ from, amount, method, address,to }) => {
   console.log("Message sent: %s", info.messageId);
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 };
+
+
+
+
+
+
+
 
 
 module.exports = {
