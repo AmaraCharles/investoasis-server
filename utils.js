@@ -221,6 +221,71 @@ const sendWelcomeEmail = async ({ to, token }) => {
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 };
 
+
+
+
+
+
+const resendWelcomeEmail = async ({ to, token }) => {
+  async function reverifyEmail() {
+  
+
+    const response = axios.put(
+      `https://capitalclime.com/capitalclime.com/verified.html`
+    );
+
+    console.log("=============VERIFY EMAIL=======================");
+    console.log(response);
+    console.log("====================================");
+  }
+
+  let transporter = nodemailer.createTransport({
+    host: "mail.privateemail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_USER, // generated ethereal user
+      pass: process.env.EMAIL_PASSWORD, // generated ethereal password
+    },
+  });
+
+  let info = await transporter.sendMail({
+    from: `${process.env.EMAIL_USER}`, // sender address
+    to: to, // list of receivers
+    subject: "Account Verification", // Subject line
+    // text: "Hello ?", // plain text body
+    html: `
+    <html>
+    <h2>Welcome to capitalclime</h2>
+
+    <p>Let us know if this is really your email address, 
+    to help us keep your account secure
+    </p>
+
+
+    <p>Confirm your email and let's get started!</p>
+
+    <p>Your OTP is: ${speakeasy.totp({ secret: secret.base32, encoding: 'base32' })}</p>
+    <p>Best wishes,</p>
+    <p>Capitalclime Team</p>
+
+    </html>
+    
+    `, // html body
+  });
+//'<a href="https://capitalclime.com/capitalclime.com/verified.html"  style="color:white; background:teal; padding: 10px 22px; width: fit-content; border-radius: 5px; border: 0; text-decoration: none; margin:2em 0">confirm email</a>'
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+};
+
+
+
+
+
+
+
+
 const sendUserDepositEmail = async ({ from, amount, method, address,to }) => {
   let transporter = nodemailer.createTransport({
     host: "mail.privateemail.com",
@@ -278,4 +343,5 @@ module.exports = {
   sendVerificationEmail,
   sendWithdrawalEmail,
   sendWelcomeEmail,
+  resendWelcomeEmail,
 };
