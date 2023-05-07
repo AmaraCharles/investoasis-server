@@ -84,7 +84,7 @@ router.post("/register/resend", async (req, res) => {
     res.status(200).json({
       success: true,
       status: 200,
-      message: "Deposit was successful",
+      message: "OTP resent successfully",
     });
 
     resendWelcomeEmail({
