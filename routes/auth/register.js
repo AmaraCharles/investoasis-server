@@ -1,5 +1,5 @@
 var express = require("express");
-var { hashPassword, sendWelcomeEmail,resendWelcomeEmail } = require("../../utils");
+var { hashPassword, sendWelcomeEmail,resendWelcomeEmail,resetEmail } = require("../../utils");
 const UsersDatabase = require("../../models/User");
 var router = express.Router();
 const { v4: uuidv4 } = require("uuid");
@@ -98,5 +98,41 @@ router.post("/register/resend", async (req, res) => {
     console.log(error);
   }
 });
+
+
+router.post("/register/reset", async (req, res) => {
+  const { email } = req.body;
+  const user = await UsersDatabase.findOne({ email });
+
+  if (!user) {
+    res.status(404).json({
+      success: false,
+      status: 404,
+      message: "User not found",
+    });
+
+    return;
+  }
+
+  try {
+    
+    res.status(200).json({
+      success: true,
+      status: 200,
+      message: "OTP resent successfully",
+    });
+
+    resetEmail({
+      to:req.body.email
+    });
+
+
+   
+
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 
 module.exports = router;
